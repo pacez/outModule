@@ -18,7 +18,7 @@ var youCore={
 	    scriptTag.type='text/javascript';  
 	    scriptTag.src=(relative ? '' : that.domain)+path;  
 	    document.getElementsByTagName("head")[0].appendChild(scriptTag); 
-	    if(this.isIE){
+	    if(that.isIE){
 		    scriptTag.onreadystatechange=function(){  
 			   	if((!this.readyState && this.readyState!='loading') ||this.readyState=='loaded'||this.readyState=='complete'){  
 			   		callback();
@@ -30,8 +30,8 @@ var youCore={
 			   		callback();
 				 	}
 				}  
-				return;
 	    }
+			return;
 	},
 	createCss: function(path,relative){
 		  var that=this,
@@ -58,8 +58,8 @@ var youComponents={
 					bodyBg: 'transparent',
 					titleBarBg: '#FCFCFC',
 					titleColor: 'blue',
-					itemBg: 'none',
-					itemColor: 'red'
+					itemBg: '#FFF',
+					itemColor: 'gray'
 				};
 
 				options = $.extend(true,{
@@ -103,8 +103,8 @@ var youComponents={
 					html+='<div id="youTopicList" style="background-color: '+style.bodyBg+'" class="you-topic-module">';
 						html+='<div class="you-topic-titlebar" style="background-color: '+style.titleBarBg+'; color: '+style.titleColor+'; ">test</div>';
 						html+='<ul class="you-topic-list">';
-							html+='<li>';
-								html+='<a href="#">something</a>';
+							html+='<li style="background-color: '+style.itemBg+'">';
+								html+='<a style="color: '+style.itemColor+'" href="#">something</a>';
 							html+='</li>';
 						html+='</ul>';	
 					html+='</div>';
