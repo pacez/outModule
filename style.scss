@@ -1,3 +1,5 @@
+@import "css3-mixins";
+
 body {
 	background-color: #F4F4F4;
 }
@@ -7,6 +9,7 @@ ul,li {
 	padding: 0;
 }
 .you-topic-module {
+	font-size: 12px;
 	border: 1px solid #BABABA;
 	.you-topic-titlebar {
 		padding: 5px;
@@ -14,9 +17,22 @@ ul,li {
 	}
 	.you-topic-list {
 		padding: 5px 0;
-		li {
+		.you-topic-item {
+			vertical-align: middle;
 			padding: 3px 5px;
+			.you-topic-item-num {
+				vertical-align: middle;
+				@include radius;
+				display: inline-block;
+				text-align: center;
+				margin-right: 5px;
+				width: 18px;
+				height: 18px;
+				line-height: 18px;
+				border: 1px solid transparent;
+			}
 			a {
+				vertical-align: middle;
 				text-decoration: none;
 				&:hover {
 					text-decoration: underline;

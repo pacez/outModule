@@ -62,7 +62,10 @@ var youComponents={
 						titleBarBg: '#FCFCFC',
 						titleColor: 'blue',
 						itemBg: '#FFF',
-						itemColor: 'gray'
+						itemColor: 'gray',
+						numColor: '#999',
+						numBorderColor: '#BABABA',
+						numBgColor: '#FFF'
 					}
 				}, options);
 
@@ -93,7 +96,7 @@ var youComponents={
 			//自定义数据
 			var data=[];
 
-			for(var i=0; i<10; i++){
+			for(var i=1; i<11; i++){
 				data.push({
 					title: '这个话题很cool—pace_zhong-'+i, 
 					id: i,
@@ -112,17 +115,18 @@ var youComponents={
 					html+='<div id="youTopicList" style="background-color: '+style.bodyBg+'" class="you-topic-module">';
 						html+='<div class="you-topic-titlebar" style="background-color: '+style.titleBarBg+'; color: '+style.titleColor+'; ">Topic List</div>';
 						html+='<ul class="you-topic-list">';
-						for(var i=0; i<data.length; i++){
+						for(var i=1; i<data.length; i++){
 							var topic=data[i],
 									topicTitle=topic.title,
 									topicId=topic.id,
 									topicHref=topic.href;
 
-							html+='<li style="background-color: '+style.itemBg+'">';
+							html+='<li  class="you-topic-item" style="background-color: '+style.itemBg+'">';
+								html+='<span class="you-topic-item-num" style="color: '+style.numColor+'; background-color: '+style.numBgColor+'; border-color: '+style.numBorderColor+'">'+i+'</span>';
 								html+='<a target="'+target+'" style="color: '+style.itemColor+'" href="'+topicHref+'">'+topicTitle+'</a>';
 							html+='</li>';
 						}
-						html+='</ul>';	
+						html+='</ul>';
 					html+='</div>';
 
 			$container.append(html);

@@ -1,3 +1,13 @@
+/* FLIP */
+/* FONT FACE */
+/* OPACITY */
+/* ROTATE*/
+/* TRANSFORM  */
+/* TRANSFORM STYLE */
+/* TRANSITION */
+/* KEYFRAMES */
+/* ANIMATION */
+/* RADIUS */
 body {
   background-color: #F4F4F4; }
 
@@ -7,17 +17,32 @@ ul, li {
   padding: 0; }
 
 .you-topic-module {
+  font-size: 12px;
   border: 1px solid #BABABA; }
   .you-topic-module .you-topic-titlebar {
     padding: 5px;
     border-bottom: 1px solid #BABABA; }
   .you-topic-module .you-topic-list {
     padding: 5px 0; }
-    .you-topic-module .you-topic-list li {
+    .you-topic-module .you-topic-list .you-topic-item {
+      vertical-align: middle;
       padding: 3px 5px; }
-      .you-topic-module .you-topic-list li a {
+      .you-topic-module .you-topic-list .you-topic-item .you-topic-item-num {
+        vertical-align: middle;
+        -moz-border-radius: 50% 50% 50% 50%;
+        -webkit-border-radius: 50% 50% 50% 50%;
+        border-radius: 50% 50% 50% 50%;
+        display: inline-block;
+        text-align: center;
+        margin-right: 5px;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        border: 1px solid transparent; }
+      .you-topic-module .you-topic-list .you-topic-item a {
+        vertical-align: middle;
         text-decoration: none; }
-        .you-topic-module .you-topic-list li a:hover {
+        .you-topic-module .you-topic-list .you-topic-item a:hover {
           text-decoration: underline; }
 
 /*# sourceMappingURL=style.css.map */
