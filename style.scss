@@ -12,14 +12,14 @@ ul,li {
 	font-size: 12px;
 	border: 1px solid #BABABA;
 	.you-topic-titlebar {
-		padding: 5px;
+		padding: 8px 5px;
 		border-bottom: 1px solid #BABABA;
 	}
 	.you-topic-list {
-		padding: 5px 0;
+		padding: 3px 0;
 		.you-topic-item {
 			vertical-align: middle;
-			padding: 3px 5px;
+			padding: 5px 5px;
 			.you-topic-item-num {
 				vertical-align: middle;
 				@include radius;

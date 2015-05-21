@@ -49,26 +49,29 @@ var youCore={
 var youComponents={
 	topicList: {
 		init: function(options){
-			var that=this;
+			var that=this,
+					defaultOptions={
+						id:"youTopicList",
+						target: '_blank',
+						loadText: 'Loading...',
+						style: {
+							bodyBg: 'transparent', 
+							titleBarBg: '#FCFCFC',
+							titleColor: 'gray',
+							itemBg: '#FFF',
+							itemColor: 'gray',
+							numColor: '#999',
+							numBorderColor: '#BABABA',
+							numBgColor: '#FFF'
+						}
+					};
 
+			//加载状态提示
+			that.showLoadText(options,defaultOptions);
 			//组件依赖资源加载
 			that.ready(function(){
-
-				options = $.extend(true,{
-					id:"youTopicList",
-					target: '_blank',
-					style: {
-						bodyBg: 'transparent',
-						titleBarBg: '#FCFCFC',
-						titleColor: 'blue',
-						itemBg: '#FFF',
-						itemColor: 'gray',
-						numColor: '#999',
-						numBorderColor: '#BABABA',
-						numBgColor: '#FFF'
-					}
-				}, options);
-
+				options = $.extend(true,defaultOptions,options);
+				//构建组件
 				that.build(options);
 			});
 
@@ -88,48 +91,62 @@ var youComponents={
 		},
 		build: function(options){
 			var that=this;
-			that.getData(options);
+			//获取数据
+			that.getData(options,function(data){
+				//创建视图
+				that.createView(data,options);
+			});
 		},
-		getData: function(options){
+		showLoadText: function(options,defaultOptions){
+			var container=document.getElementById((options.id ? options.id : defaultOptions.id));
+			container.innerHTML=(options.loadText ? options.loadText : defaultOptions.loadText);
+		},
+		getData: function(options,callBack){
 			var that=this;
 
 			//自定义数据
-			var data=[];
+			var topicList=[];
 
 			for(var i=1; i<11; i++){
-				data.push({
+				topicList.push({
 					title: '这个话题很cool—pace_zhong-'+i, 
 					id: i,
 					href: youCore.domain+'/topic/'+i+'.html'
 				});
 			}
 
-			that.createView(data,options);
+			var data={
+				title:'热门话题',
+				topicList:topicList
+			}
+
+			callBack(data);
 		},
 		createView: function(data,options){
 			var html='',
+					topicList=data.topicList,
 					style=options.style,
 					target=options.target,
 					$container=$('#'+options.id);
 
 					html+='<div id="youTopicList" style="background-color: '+style.bodyBg+'" class="you-topic-module">';
-						html+='<div class="you-topic-titlebar" style="background-color: '+style.titleBarBg+'; color: '+style.titleColor+'; ">Topic List</div>';
+						html+='<div class="you-topic-titlebar" style="background-color: '+style.titleBarBg+'; color: '+style.titleColor+'; ">'+data.title+'</div>';
 						html+='<ul class="you-topic-list">';
-						for(var i=1; i<data.length; i++){
-							var topic=data[i],
+						for(var i=0; i<topicList.length; i++){
+							var topic=topicList[i],
 									topicTitle=topic.title,
 									topicId=topic.id,
 									topicHref=topic.href;
 
 							html+='<li  class="you-topic-item" style="background-color: '+style.itemBg+'">';
-								html+='<span class="you-topic-item-num" style="color: '+style.numColor+'; background-color: '+style.numBgColor+'; border-color: '+style.numBorderColor+'">'+i+'</span>';
+								html+='<span class="you-topic-item-num" style="color: '+style.numColor+'; background-color: '+style.numBgColor+'; border-color: '+style.numBorderColor+'">'+(i+1)+'</span>';
 								html+='<a target="'+target+'" style="color: '+style.itemColor+'" href="'+topicHref+'">'+topicTitle+'</a>';
 							html+='</li>';
 						}
 						html+='</ul>';
 					html+='</div>';
 
-			$container.append(html);
+			$container.html(html);
 		}
 	}
 };
