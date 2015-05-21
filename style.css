@@ -11,7 +11,13 @@ ul, li {
   .you-topic-module .you-topic-titlebar {
     padding: 5px;
     border-bottom: 1px solid #BABABA; }
-  .you-topic-module .you-topic-list li {
-    padding: 3px 5px; }
+  .you-topic-module .you-topic-list {
+    padding: 5px 0; }
+    .you-topic-module .you-topic-list li {
+      padding: 3px 5px; }
+      .you-topic-module .you-topic-list li a {
+        text-decoration: none; }
+        .you-topic-module .you-topic-list li a:hover {
+          text-decoration: underline; }
 
 /*# sourceMappingURL=style.css.map */

@@ -8,10 +8,15 @@
         <title>Topic List</title>
         <script type="text/javascript" src="you.js"></script>
         <script type="text/javascript">
-        	youComponents.topicList.init();
+        	youComponents.topicList.init({
+                style: {
+                    bodyBg: "white",
+                    itemColor: "red"
+                }
+            });
         </script>
     </head>
     <body>
-    	<div id="topicList"></div>
+    	<div id="youTopicList"></div>
     </body>
 </html>

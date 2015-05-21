@@ -53,18 +53,17 @@ var youComponents={
 
 			//组件依赖资源加载
 			that.ready(function(){
-				//默认样式
-				var defaultStyle={
-					bodyBg: 'transparent',
-					titleBarBg: '#FCFCFC',
-					titleColor: 'blue',
-					itemBg: '#FFF',
-					itemColor: 'gray'
-				};
 
 				options = $.extend(true,{
-					id:"topicList",
-					style: defaultStyle
+					id:"youTopicList",
+					target: '_blank',
+					style: {
+						bodyBg: 'transparent',
+						titleBarBg: '#FCFCFC',
+						titleColor: 'blue',
+						itemBg: '#FFF',
+						itemColor: 'gray'
+					}
 				}, options);
 
 				that.build(options);
@@ -91,21 +90,38 @@ var youComponents={
 		getData: function(options){
 			var that=this;
 
-			var data=null;
+			//自定义数据
+			var data=[];
+
+			for(var i=0; i<10; i++){
+				data.push({
+					title: '这个话题很cool—pace_zhong-'+i, 
+					id: i,
+					href: youCore.domain+'/topic/'+i+'.html'
+				});
+			}
 
 			that.createView(data,options);
 		},
 		createView: function(data,options){
-			var style=options.style,
-					html='',
+			var html='',
+					style=options.style,
+					target=options.target,
 					$container=$('#'+options.id);
 
 					html+='<div id="youTopicList" style="background-color: '+style.bodyBg+'" class="you-topic-module">';
-						html+='<div class="you-topic-titlebar" style="background-color: '+style.titleBarBg+'; color: '+style.titleColor+'; ">test</div>';
+						html+='<div class="you-topic-titlebar" style="background-color: '+style.titleBarBg+'; color: '+style.titleColor+'; ">Topic List</div>';
 						html+='<ul class="you-topic-list">';
+						for(var i=0; i<data.length; i++){
+							var topic=data[i],
+									topicTitle=topic.title,
+									topicId=topic.id,
+									topicHref=topic.href;
+
 							html+='<li style="background-color: '+style.itemBg+'">';
-								html+='<a style="color: '+style.itemColor+'" href="#">something</a>';
+								html+='<a target="'+target+'" style="color: '+style.itemColor+'" href="'+topicHref+'">'+topicTitle+'</a>';
 							html+='</li>';
+						}
 						html+='</ul>';	
 					html+='</div>';
 

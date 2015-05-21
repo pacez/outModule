@@ -13,8 +13,15 @@ ul,li {
 		border-bottom: 1px solid #BABABA;
 	}
 	.you-topic-list {
+		padding: 5px 0;
 		li {
 			padding: 3px 5px;
+			a {
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }
