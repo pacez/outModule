@@ -73,6 +73,9 @@ var youComponents={
 			//组件依赖资源加载
 			that.ready(function(){
 				options = $.extend(true,defaultOptions,options);
+
+				options._dataurl='demo.html'
+
 				//构建组件
 				that.build(options);
 			});
@@ -93,12 +96,12 @@ var youComponents={
 		build: function(options){
 			var that=this;
 			//获取数据
-			that.getData(options,function(data){
+			that.getData(options._dataurl,function(data){
 				//创建视图
 				that.createView(data,options);
 			});
 		},
-		getData: function(options,callBack){
+		getData: function(url,callBack){
 			var that=this;
 
 			//自定义数据
