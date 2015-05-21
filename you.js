@@ -74,7 +74,7 @@ var youComponents={
 			that.ready(function(){
 				options = $.extend(true,defaultOptions,options);
 
-				options._dataurl='demo.html'
+				options._dataurl='demo.html';
 
 				//构建组件
 				that.build(options);
