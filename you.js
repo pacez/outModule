@@ -84,7 +84,7 @@ var youComponents={
 
 			if(youCore.hasJquery){
 				callback();
-				return true;
+				return;
 			}
 			youCore.loadJquery(callback); //加载jquery
 
