@@ -57,7 +57,7 @@ var youComponents={
 						target: '_blank',
 						loadText: 'Loading...',
 						style: {
-							bodyBg: 'transparent', 
+							containerBg: 'transparent', 
 							titleBarBg: '#FCFCFC',
 							titleColor: 'gray',
 							itemBg: '#FFF',
@@ -126,7 +126,7 @@ var youComponents={
 					target=options.target,
 					$container=$('#'+options.id);
 
-					html+='<div id="youTopicList" style="background-color: '+style.bodyBg+'" class="you-topic-module">';
+					html+='<div id="youTopicList" style="background-color: '+style.containerBg+'" class="you-topic-module">';
 						html+='<div class="you-topic-titlebar" style="background-color: '+style.titleBarBg+'; color: '+style.titleColor+'; ">'+data.title+'</div>';
 						html+='<ul class="you-topic-list">';
 						for(var i=0; i<topicList.length; i++){
