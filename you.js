@@ -4,7 +4,7 @@ var youCore={
 	isIE: !(!window.VBArray),
 	paths: {
 		topicCss: 'style.css',
-		jqueryScript: '/misc/script/lib/jquery.js'
+		jqueryScript: '/misc/dist/script/lib/jquery.js'
 	},
 	log: function(str){
 		if(console && console.log){
