@@ -1,7 +1,7 @@
 var youCore={
 	hasJquery: ('jQuery' in window),
 	domain: 'http://you.jd.com',
-	isIE: (!+[1,]),
+	isIE: !(!window.VBArray),
 	paths: {
 		topicCss: 'style.css',
 		jqueryScript: '/misc/script/lib/jquery.js'
