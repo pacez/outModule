@@ -18,6 +18,7 @@ var youCore={
 	    scriptTag.type='text/javascript';  
 	    scriptTag.src=(relative ? '' : that.domain)+path;  
 	    document.getElementsByTagName("head")[0].appendChild(scriptTag); 
+
 	    if(that.isIE){
 		    scriptTag.onreadystatechange=function(){  
 			   	if((!this.readyState && this.readyState!='loading') ||this.readyState=='loaded'||this.readyState=='complete'){  
@@ -40,6 +41,7 @@ var youCore={
 	    cssTag.rel='stylesheet';  
 	    cssTag.href=(relative ? '' : that.domain)+path;  
 	    document.getElementsByTagName("head")[0].appendChild(cssTag); 
+	   	return;
 	},
 	loadJquery: function(callback,relative){
 	  this.createScript(this.paths.jqueryScript,callback,relative);
@@ -74,7 +76,6 @@ var youComponents={
 				//构建组件
 				that.build(options);
 			});
-
 		},
 		ready: function(callback){
 			var that=this;
@@ -96,10 +97,6 @@ var youComponents={
 				//创建视图
 				that.createView(data,options);
 			});
-		},
-		showLoadText: function(options,defaultOptions){
-			var container=document.getElementById((options.id ? options.id : defaultOptions.id));
-			container.innerHTML=(options.loadText ? options.loadText : defaultOptions.loadText);
 		},
 		getData: function(options,callBack){
 			var that=this;
@@ -147,6 +144,10 @@ var youComponents={
 					html+='</div>';
 
 			$container.html(html);
+		},
+		showLoadText: function(options,defaultOptions){
+			var container=document.getElementById((options.id ? options.id : defaultOptions.id));
+			container.innerHTML='<span class="you-topic-loading">'+(options.loadText ? options.loadText : defaultOptions.loadText)+'</span>';
 		}
 	}
 };
