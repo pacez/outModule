@@ -20,29 +20,43 @@ var youCore={
 	    scriptTag.src=(relative ? '' : that.domain)+path;  
 	    document.getElementsByTagName("head")[0].appendChild(scriptTag); 
 
-	    if(that.isIE5678){
-		    scriptTag.onreadystatechange=function(){  
-			   	if((!this.readyState && this.readyState!='loading') ||this.readyState=='loaded'||this.readyState=='complete'){  
-			   		callback();
-				 	}
-				}  
-	    }else {
-		    scriptTag.onload=function(){  
-			   	if((!this.readyState && this.readyState!='loading') ||this.readyState=='loaded'||this.readyState=='complete'){  
-			   		callback();
-				 	}
-				}  
-	    }
+	    if(typeof callback === "function"){
+				that.loadComplete(scriptTag,callback);
+			}
 			return;
 	},
-	createCss: function(path,relative){
+	createCss: function(path,callback,relative){
 		  var that=this,
 		  		cssTag=document.createElement('link');
 
 	    cssTag.rel='stylesheet';  
 	    cssTag.href=(relative ? '' : that.domain)+path;  
 	    document.getElementsByTagName("head")[0].appendChild(cssTag); 
+	    if(typeof callback === "function"){
+				that.loadComplete(cssTag,callback);
+	    }
 	   	return;
+	},
+	isReady: function(elem){
+		if((!elem.readyState && elem.readyState!='loading') ||elem.readyState=='loaded'||elem.readyState=='complete'){  
+		   return true;
+		}
+	},
+	loadComplete: function(tag,callback){
+		var that=this;
+    if(that.isIE5678){
+	    tag.onreadystatechange=function(){  
+		   	if(that.isReady(this)){  
+		   		callback();
+			 	}
+			}  
+    }else {
+	    tag.onload=function(){  
+		   	if(that.isReady(this)){  
+		   		callback();
+			 	}
+			}  
+    }
 	},
 	loadJquery: function(callback,relative){
 	  this.createScript(this.paths.jqueryScript,callback,relative);
@@ -84,13 +98,13 @@ var youComponents={
 		ready: function(callback){
 			var that=this;
 
-			youCore.createCss(youCore.paths.topicCss,true); //加载话题列表样式
-
-			if(youCore.hasJquery){
-				callback();
-				return;
-			}
-			youCore.loadJquery(callback); //加载jquery
+			youCore.createCss(youCore.paths.topicCss,function(){
+				if(youCore.hasJquery){
+					callback();
+					return;
+				}
+				youCore.loadJquery(callback); //加载jquery
+			},true); //加载话题列表样式
 
 			return;
 		},
