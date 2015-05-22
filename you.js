@@ -2,6 +2,7 @@ var youCore={
 	hasJquery: ('jQuery' in window),
 	domain: 'http://you.jd.com',
 	isIE: !(!window.VBArray),
+	isIE5678: (!+[1,]),
 	paths: {
 		topicCss: 'style.css',
 		jqueryScript: '/misc/dist/script/lib/jquery.js'
@@ -19,7 +20,7 @@ var youCore={
 	    scriptTag.src=(relative ? '' : that.domain)+path;  
 	    document.getElementsByTagName("head")[0].appendChild(scriptTag); 
 
-	    if(that.isIE){
+	    if(that.isIE5678){
 		    scriptTag.onreadystatechange=function(){  
 			   	if((!this.readyState && this.readyState!='loading') ||this.readyState=='loaded'||this.readyState=='complete'){  
 			   		callback();
