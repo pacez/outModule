@@ -1,6 +1,6 @@
 var youCore={
 	hasJquery: ('jQuery' in window),
-	domain: 'http://you.jd.com',
+	domain: 'http://xxx.com',
 	isIE: !(!window.VBArray),
 	isIE5678: (!+[1,]),
 	paths: {
